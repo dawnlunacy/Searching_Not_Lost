@@ -6,7 +6,7 @@
     placeholder="  Input Keyword to Search"
     name="search"
     />
-  <button class="search-btn"> </button>
+  <button class="search-btn" > </button>
 
   </form>
 </template>
@@ -28,14 +28,17 @@ export default {
   .search-btn {
     height: 50px;
     width: 50px;
-    color: pink;
+    background-color: pink;
     border-radius: 0 10px 10px 0;
+    background-image: url("../assets/search-icon.png");
+    background-size: 50px;
+
   }
 
   .search-box {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
   }
 
   
