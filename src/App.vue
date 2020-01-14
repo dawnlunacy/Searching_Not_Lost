@@ -2,17 +2,18 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <header> </header>
+    <header> <SearchForm/> </header>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue';
+import SearchForm from './components/SearchForm';
 
 export default {
   name: 'app',
   components: {
-    // HelloWorld,
+    SearchForm
   },
 };
 </script>
@@ -34,7 +35,10 @@ export default {
 
 header {
   background-color: #333;
-  height: 200px;
+  height: 150px;
   width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 </style>
