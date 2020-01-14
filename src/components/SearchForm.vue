@@ -21,8 +21,7 @@ export default {
   input {
     height: 50px;
     width: 500px;
-    /* margin-top: 50px; */
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     text-align: center;
   }
 
@@ -30,7 +29,7 @@ export default {
     height: 50px;
     width: 50px;
     color: pink;
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
   }
 
   .search-box {
