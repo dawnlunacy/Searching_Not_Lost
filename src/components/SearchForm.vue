@@ -1,10 +1,13 @@
 <template>
-  <form>
+  <form class="search-box">
     <input 
-    className="searchInput"
+    class="searchInput"
     type="text"
-    placeholder=" Input Keyword to Search"
-    name="search"/>
+    placeholder="  Input Keyword to Search"
+    name="search"
+    />
+  <button class="search-btn"> </button>
+
   </form>
 </template>
 
@@ -18,7 +21,23 @@ export default {
   input {
     height: 50px;
     width: 500px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .search-btn {
+    height: 50px;
+    width: 50px;
+    color: pink;
     border-radius: 10px;
   }
+
+  .search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
 </style>
