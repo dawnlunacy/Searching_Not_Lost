@@ -53,7 +53,11 @@ export default {
     border-radius: 0 10px 10px 0;
     background-image: url("../assets/search-icon.png");
     background-size: 50px;
+  }
 
+  .search-btn:hover {
+    background-color: #FF3366;
+    cursor: pointer;
   }
 
   .search-box {
