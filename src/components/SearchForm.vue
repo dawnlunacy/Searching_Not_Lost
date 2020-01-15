@@ -1,10 +1,12 @@
 <template>
   <form class="search-box">
     <input 
-    class="searchInput"
+    id="search-query-input"
+    class="search-input"
     type="text"
     placeholder="  Input Keyword to Search"
     name="search"
+    value=''
     @change="this.handleChange"
     />
   <button class="search-btn" @click="this.submitSearch"> </button>
@@ -22,6 +24,7 @@ export default {
           },
     submitSearch(e) {
       e.preventDefault();
+      document.getElementById("search-query-input").value = '';
     }
   },
   data() {
