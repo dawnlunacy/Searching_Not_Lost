@@ -27,11 +27,15 @@ export default {
     PhotoDisplay
   },
   methods: {
-    showQuery(whatever) {
-      this.currentQuery = whatever;
-      console.log("hi")
-      fetchDefaultPics()
-      .then(res => this.currentPics = res.map(pic => pic.urls.small))
+    showQuery(query) {
+      this.currentQuery = query;
+      // console.log("hello", query)
+      fetchDefaultPics(this.currentQuery)
+      .then(res => {
+        console.log("meow", res)
+        return res
+      })
+      .then(res => this.currentPics = res.results.map(pic => pic.urls.small))
       .then(console.log("pics", this.currentPics))
       return this.currentQuery || '';
     },
