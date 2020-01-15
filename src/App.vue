@@ -5,7 +5,7 @@
     <header> <SearchForm @showQuery="this.showQuery"> </SearchForm></header>
     <main>
       <h2> {{this.currentQuery}} </h2> 
-      <PhotoDisplay />
+      <PhotoDisplay> </PhotoDisplay>
     </main>
   </div>
   
@@ -15,6 +15,7 @@
 // import HelloWorld from './components/HelloWorld.vue';
 import SearchForm from './components/SearchForm';
 import PhotoDisplay from './components/PhotoDisplay';
+import { fetchDefaultPics }  from '../utils/apiCalls';
 
 export default {
   name: 'app',
@@ -25,6 +26,11 @@ export default {
   methods: {
     showQuery(whatever) {
       this.currentQuery = whatever;
+      console.log("hi")
+      fetchDefaultPics()
+      .then(res => console.log("herre", res))
+      .then(res => this.currentPics.push(res.map(pic => pic.urls.thumb)))
+      .then(console.log("pics", this.currentPics))
       return this.currentQuery || '';
     },
 
@@ -32,6 +38,7 @@ export default {
   data() {
     return {
       currentQuery: '',
+      currentPics: []
     }
   }
 };
