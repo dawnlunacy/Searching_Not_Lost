@@ -90,12 +90,13 @@ header {
 }
 
 main {
-  column-count: 4;
+  column-count: 3;
   column-gap: 0;
   overflow: scroll;
   padding: 10px;
   break-inside: avoid;
-  width: 100%
+  width: 100%;
+  margin: 10px;
 }
 
 h2 {
