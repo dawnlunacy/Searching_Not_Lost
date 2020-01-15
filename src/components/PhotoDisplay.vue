@@ -40,4 +40,8 @@ export default {
 .photographer-name {
   margin: 20px;
   }
+
+a {
+  text-decoration: none;
+}
 </style>
