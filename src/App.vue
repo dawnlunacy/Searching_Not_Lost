@@ -2,19 +2,38 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <header> <SearchForm/> </header>
+    <header> <SearchForm @showQuery="this.showQuery"> </SearchForm></header>
+    <main>
+      <h2> {{this.currentQuery}} </h2> 
+      <PhotoDisplay />
+    </main>
   </div>
+  
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue';
 import SearchForm from './components/SearchForm';
+import PhotoDisplay from './components/PhotoDisplay';
 
 export default {
   name: 'app',
   components: {
-    SearchForm
+    SearchForm,
+    PhotoDisplay
   },
+  methods: {
+    showQuery(whatever) {
+      this.currentQuery = whatever;
+      return this.currentQuery || '';
+    },
+
+  },
+  data() {
+    return {
+      currentQuery: '',
+    }
+  }
 };
 </script>
 
