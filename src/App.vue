@@ -69,4 +69,8 @@ header {
   justify-content: center;
   align-content: center;
 }
+
+main {
+  display: inline-block;
+}
 </style>
