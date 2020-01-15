@@ -24,6 +24,7 @@ export default {
           },
     submitSearch(e) {
       e.preventDefault();
+      this.$emit('showQuery', this.queryToSearch)
       document.getElementById("search-query-input").value = '';
     }
   },
