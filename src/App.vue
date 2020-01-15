@@ -5,7 +5,10 @@
     <header> <SearchForm @showQuery="this.showQuery"> </SearchForm></header>
     <main>
       <h2> {{this.currentQuery}} </h2> 
-      <PhotoDisplay> </PhotoDisplay>
+      <PhotoDisplay 
+      v-for="picUrl in this.currentPics"
+      v-bind:picUrl="picUrl"
+      > </PhotoDisplay>
     </main>
   </div>
   
@@ -28,8 +31,7 @@ export default {
       this.currentQuery = whatever;
       console.log("hi")
       fetchDefaultPics()
-      .then(res => console.log("herre", res))
-      .then(res => this.currentPics.push(res.map(pic => pic.urls.thumb)))
+      .then(res => this.currentPics = res.map(pic => pic.urls.small))
       .then(console.log("pics", this.currentPics))
       return this.currentQuery || '';
     },

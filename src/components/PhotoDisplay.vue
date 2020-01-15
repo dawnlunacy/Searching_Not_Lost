@@ -1,7 +1,7 @@
 <template>
   <div class="photo-card">
     <div class="photo-image-display">
-    <img src=""/>
+    <img class="photo" v-bind:src="picUrl"/>
     </div>
     <section class="photo-description">
       <h3 class="photographer-name"> <a href> Photographer: Name </a></h3>
@@ -16,6 +16,9 @@
 <script>
 export default {
   name: 'PhotoDisplay',
+  props: {
+    picUrl: String
+  }
 
 }
 </script>
@@ -31,12 +34,15 @@ export default {
 }
 
 .photo-image-display {
-  width: 275px;
-  height: 275px;
+  max-width: 275px;
+  max-height: 275px;
   border: 2px solid black;
   margin: 35px 35px 0 35px;
 }
-
+.photo {
+  max-width: 275px;
+  max-height: 275px;
+}
 .photographer-name {
   margin: 20px;
   }
