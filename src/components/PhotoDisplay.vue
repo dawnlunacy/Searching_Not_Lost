@@ -1,13 +1,11 @@
 <template>
   <div class="photo-card">
     <div class="photo-image-display">
-    <img src=""/>
+    <img class="photo" v-bind:src="picInfo.urls.small"/>
     </div>
     <section class="photo-description">
-      <h3 class="photographer-name"> <a href> Photographer: Name </a></h3>
-
+      <h3 class="photographer-name"> <a v-bind:href="picInfo.photographer.unsplash_profile_url"> Photographer: {{picInfo.photographer.name}} </a></h3>
     </section>
-
   </div>
 </template>
 
@@ -16,7 +14,9 @@
 <script>
 export default {
   name: 'PhotoDisplay',
-
+  props: {
+    picInfo: Object
+  }
 }
 </script>
 
@@ -25,23 +25,34 @@ export default {
 <style scoped>
 .photo-card {
   width: 350px;
-  height: 375px;
-  border: 2px solid palevioletred;
+  max-height: 400px;
   margin: 20px;
+  background-color: #C8C8C8;
+  padding: 10px;
+  break-inside: avoid;
 }
 
 .photo-image-display {
-  width: 275px;
-  height: 275px;
-  border: 2px solid black;
+  max-width: 275px;
+  max-height: 275px;
   margin: 35px 35px 0 35px;
 }
-
+.photo {
+  max-width: 275px;
+  max-height: 275px;
+}
 .photographer-name {
-  margin: 20px;
+  margin: 25px;
+  font-family: apple-chancery;
+  color: pink;
   }
 
 a {
   text-decoration: none;
+  color: #FF3366;
+}
+
+a:hover {
+cursor: pointer;
 }
 </style>

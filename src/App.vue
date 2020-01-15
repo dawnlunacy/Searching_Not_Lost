@@ -4,8 +4,11 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <header> <SearchForm @showQuery="this.showQuery"> </SearchForm></header>
     <main>
-      <h2> {{this.currentQuery}} </h2> 
-      <PhotoDisplay />
+        <h2> {{this.currentQuery}} </h2> 
+        <PhotoDisplay 
+        v-for="picInfo in this.currentPics"
+        v-bind:picInfo="picInfo"
+        > </PhotoDisplay>
     </main>
   </div>
   
@@ -15,6 +18,7 @@
 // import HelloWorld from './components/HelloWorld.vue';
 import SearchForm from './components/SearchForm';
 import PhotoDisplay from './components/PhotoDisplay';
+import { fetchDefaultPics }  from '../utils/apiCalls';
 
 export default {
   name: 'app',
@@ -23,8 +27,31 @@ export default {
     PhotoDisplay
   },
   methods: {
-    showQuery(whatever) {
-      this.currentQuery = whatever;
+    showQuery(query) {
+      this.currentQuery = query;
+      // console.log("hello", query)
+      fetchDefaultPics(this.currentQuery)
+      .then(res => {
+        console.log("meow", res)
+        return res
+      })
+      .then(res => this.currentPics = res.results.map(pic => {
+        let answer =  { 
+          alt_discription: pic.alt_description,
+          urls: {
+            full: pic.urls.full,
+            small: pic.urls.small
+          },
+          photographer: {
+            name: pic.user.name,
+            portfolio_url: pic.user.portfolio_url,
+            unsplash_profile_url: pic.user.links.html
+          }
+        }
+        console.log("answer", answer)
+        return answer
+      }))
+      .then(console.log("pics", this.currentPics))
       return this.currentQuery || '';
     },
 
@@ -32,6 +59,7 @@ export default {
   data() {
     return {
       currentQuery: '',
+      currentPics: []
     }
   }
 };
@@ -59,5 +87,20 @@ header {
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+main {
+  column-count: 4;
+  column-gap: 0;
+  overflow: scroll;
+  padding: 10px;
+  break-inside: avoid;
+  width: 100%
+}
+
+h2 {
+  color: #FF3366;
+  font-family: apple-chancery;
+  font-size: 3em;
 }
 </style>
