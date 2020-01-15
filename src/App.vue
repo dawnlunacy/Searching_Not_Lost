@@ -4,11 +4,11 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <header> <SearchForm @showQuery="this.showQuery"> </SearchForm></header>
     <main>
-      <h2> {{this.currentQuery}} </h2> 
-      <PhotoDisplay 
-      v-for="picUrl in this.currentPics"
-      v-bind:picUrl="picUrl"
-      > </PhotoDisplay>
+        <h2> {{this.currentQuery}} </h2> 
+        <PhotoDisplay 
+        v-for="picInfo in this.currentPics"
+        v-bind:picInfo="picInfo"
+        > </PhotoDisplay>
     </main>
   </div>
   
@@ -35,7 +35,22 @@ export default {
         console.log("meow", res)
         return res
       })
-      .then(res => this.currentPics = res.results.map(pic => pic.urls.small))
+      .then(res => this.currentPics = res.results.map(pic => {
+        let answer =  { 
+          alt_discription: pic.alt_description,
+          urls: {
+            full: pic.urls.full,
+            small: pic.urls.small
+          },
+          photographer: {
+            name: pic.user.name,
+            portfolio_url: pic.user.portfolio_url,
+            unsplash_profile_url: pic.user.links.html
+          }
+        }
+        console.log("answer", answer)
+        return answer
+      }))
       .then(console.log("pics", this.currentPics))
       return this.currentQuery || '';
     },
@@ -75,6 +90,17 @@ header {
 }
 
 main {
-  display: inline-block;
+  column-count: 4;
+  column-gap: 0;
+  overflow: scroll;
+  padding: 10px;
+  break-inside: avoid;
+  width: 100%
+}
+
+h2 {
+  color: #FF3366;
+  font-family: apple-chancery;
+  font-size: 3em;
 }
 </style>
